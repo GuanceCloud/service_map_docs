@@ -1,8 +1,8 @@
 # 观测云 Service Map 数据结构说明
 
-## [Service Map](https://console.guance.com/tracing/service/directedGraph) 页面数据接口说明
+## Service Map 页面数据接口说明
 
-页面接口响应数据示例：
+接口响应数据示例：
 
 ```json
 {
@@ -125,51 +125,51 @@
 
 字段说明：
 
-| 字段                                      | 类型       | 说明                                            |
-|-----------------------------------------|----------|-----------------------------------------------|
-| content.services                        | []Object | 服务列表                                          |
-| content.services[i].name                | string   | 服务名称                                          |
-| content.services[i].type                | string   | 服务类型，http/web/db/gateway...                   |
-| content.services[i].workspace_name      | string   | 服务来源工作空间名称                                    |
-| content.services[i].workspace_uuid      | string   | 服务来源工作空间ID                                    |
-| content.services[i].data                | Object   | 服务相应的指标                                       |
-| content.services[i].data.avg_per_second | float    | 服务每秒被调用次数                                     |
-| content.services[i].data.avg_resp_time  | float    | 服务平均响应时间，单位微秒                                 |
-| content.services[i].data.env            | string   | 服务部署环境                                        |
-| content.services[i].data.error_count    | int      | 服务出错次数                                        |
-| content.services[i].data.error_rate     | float    | 服务错误率                                         |
-| content.services[i].data.key            | string   | 服务标识，通常为服务名，当打开区分服务环境和版本开关时，为 <服务名>:<环境>:<版本> |
-| content.services[i].data.max_duration   | int      | 最长响应时间                                        |
-| content.services[i].data.p50            | int      | 50分位响应时间                                      |
-| content.services[i].data.p75            | int      | 75分位响应时间                                      |
-| content.services[i].data.p90            | int      | 90分位响应时间                                      |
-| content.services[i].data.p95            | int      | 95分位响应时间                                      |
-| content.services[i].data.p99            | int      | 99分位响应时间                                      |
-| content.services[i].data.service        | string   | 同 content.services[i].name                    |
-| content.services[i].data.source_type    | string   | 同 content.services[i].type                    |
-| content.services[i].data.sum_resp_time  | int      | 服务响应时间汇总                                      |
-| content.services[i].data.total_count    | int      | 调用次数                                          |
-| content.services[i].data.version        | string   | 服务的版本                                         |
-| content.maps                            | []Object | 服务之间的调用关系                                     |
-| content.maps[i].avg_per_second          | float    | 主调服务对被调服务每秒调用次数                               |
-| content.maps[i].avg_resp_time           | float    | 被调服务平均响应时间，单位：微秒                              |
-| content.maps[i].error_count             | int      | 被调服务错误次数                                      |
-| content.maps[i].error_rate              | float    | 被调服务错误率                                       |
-| content.maps[i].source                  | string   | 主调（请求方）服务名                                    |
-| content.maps[i].source_workspace_name   | string   | 主调服务所在工作空间名                                   |
-| content.maps[i].source_workspace_uuid   | string   | 主调服务所在工作空间ID                                  |
-| content.maps[i].sum_resp_time           | int      | 被调服务响应时间加总                                    |
-| content.maps[i].target                  | string   | 被调（被请求方）服务名称                                  |
-| content.maps[i].target_workspace_name   | string   | 被调服务所在工作空间                                    |
-| content.maps[i].target_workspace_uuid   | string   | 被调服务工作空间ID                                    |
-| content.maps[i].total_count             | int      | 服务之间总的调用次数                                    |
+| 字段                                      | 类型       | 说明                                           |
+|-----------------------------------------|----------|----------------------------------------------|
+| content.services                        | []Object | 服务列表和指标                                      |
+| content.services[i].name                | string   | 服务名称                                         |
+| content.services[i].type                | string   | 服务类型，http/web/db/gateway...                  |
+| content.services[i].workspace_name      | string   | 服务所在工作空间名称                                   |
+| content.services[i].workspace_uuid      | string   | 服务所在工作空间ID                                   |
+| content.services[i].data                | Object   | 服务对应的指标集                                     |
+| content.services[i].data.avg_per_second | float    | 服务每秒被调用次数                                    |
+| content.services[i].data.avg_resp_time  | float    | 服务平均响应时间，单位微秒                                |
+| content.services[i].data.env            | string   | 服务部署环境                                       |
+| content.services[i].data.error_count    | int      | 服务出错次数                                       |
+| content.services[i].data.error_rate     | float    | 服务错误率                                        |
+| content.services[i].data.key            | string   | 服务标识，通常为服务名，当区分服务环境和版本时，为 <服务名>:<环境>:<版本> 拼凑 |
+| content.services[i].data.max_duration   | int      | 最长响应时间                                       |
+| content.services[i].data.p50            | int      | 50分位响应时间                                     |
+| content.services[i].data.p75            | int      | 75分位响应时间                                     |
+| content.services[i].data.p90            | int      | 90分位响应时间                                     |
+| content.services[i].data.p95            | int      | 95分位响应时间                                     |
+| content.services[i].data.p99            | int      | 99分位响应时间                                     |
+| content.services[i].data.service        | string   | 同 content.services[i].name                   |
+| content.services[i].data.source_type    | string   | 同 content.services[i].type                   |
+| content.services[i].data.sum_resp_time  | int      | 服务响应时间汇总                                     |
+| content.services[i].data.total_count    | int      | 调用次数                                         |
+| content.services[i].data.version        | string   | 服务的版本                                        |
+| content.maps                            | []Object | 服务之间的调用关系                                    |
+| content.maps[i].avg_per_second          | float    | 主调服务对被调服务每秒调用次数                              |
+| content.maps[i].avg_resp_time           | float    | 被调服务平均响应时间，单位：微秒                             |
+| content.maps[i].error_count             | int      | 被调服务错误次数                                     |
+| content.maps[i].error_rate              | float    | 被调服务错误率                                      |
+| content.maps[i].source                  | string   | 主调服务名称                                       |
+| content.maps[i].source_workspace_name   | string   | 主调服务所在工作空间名                                  |
+| content.maps[i].source_workspace_uuid   | string   | 主调服务所在工作空间ID                                 |
+| content.maps[i].sum_resp_time           | int      | 被调服务响应时间加总                                   |
+| content.maps[i].target                  | string   | 被调服务名称                                       |
+| content.maps[i].target_workspace_name   | string   | 被调服务所在工作空间                                   |
+| content.maps[i].target_workspace_uuid   | string   | 被调服务所在工作空间ID                                 |
+| content.maps[i].total_count             | int      | 服务之间总的调用次数                                   |
 
 
 ## 数据来源及 DQL 查询
 
 ### namespace `TM`
 
-`TM` 命名空间中保存了服务列表及服务级别的指标数据，`TM` 对每个服务按照每分钟、每小时、每天三个不同粒度对服务指标数据进行了聚合，便于不同时间范围内的指标数据查询。
+`TM` 命名空间中保存了服务列表及服务级别的指标数据，前述接口 `content.services` 数据即来源于该命名空间，TM` 对每个服务按照分钟、小时、每天三个不同粒度对服务指标数据进行了预聚合，便于不同时间范围内的数据查询。
 
 比如查询 `2024-03-19 15:00:00` ～ `2024-03-19 15:15:00` 15分钟内的所有服务指标数据，可以使用 DQL：
 
@@ -225,21 +225,21 @@ TM::`*`:(){source="service_list_1m" and date >= 1710831600000 and date <= 171083
   }
 ]
 ```
-主要的字段说明如下：
+其中主要的字段说明如下：
 
-| 字段              | 类型     | 说明                                                                                                  |
-|-----------------|--------|-----------------------------------------------------------------------------------------------------|
-| source          | string | 数据聚合的粒度，分为每分钟（source="service_list_1m")，每小时（source="service_list_1h"） 和每天（source="service_list_1d"） |
-| r_env           | string | 服务部署的环境                                                                                             |
-| r_error_count   | int    | 服务出错次数                                                                                              |
-| r_max_duration  | int    | 时间粒度内的最大响应时间，单位：微秒                                                                                  |
-| r_request_count | int    | 请求次数                                                                                                |
-| r_resp_time     | int    | 时间粒度内汇总的响应时间总和                                                                                      |
-| r_service       | string | 服务名称                                                                                                |
-| r_service_sub   | string | <服务名称>:<部署环境>:<服务版本>                                                                                |
-| r_type          | string | 服务类型，http/web/db/gateway...                                                                         |
-| r_version       | string | 服务版本                                                                                                |
-| date            | int    | 毫秒时间戳，对应每分钟的开始(hh:mm:00)，每小时的开始（hh:00），每天的开始（00:00:00）                                              |
+| 字段              | 类型     | 说明                                                                                                                                        |
+|-----------------|--------|-------------------------------------------------------------------------------------------------------------------------------------------|
+| source          | string | 数据聚合的粒度，分为每分钟（source="service_list_1m")，每小时（source="service_list_1h"） 和每天（source="service_list_1d"）                                       |
+| r_env           | string | 服务部署的环境                                                                                                                                   |
+| r_error_count   | int    | 服务出错次数                                                                                                                                    |
+| r_max_duration  | int    | 时间粒度内的最大响应时间，单位：微秒                                                                                                                        |
+| r_request_count | int    | 请求次数                                                                                                                                      |
+| r_resp_time     | int    | 时间粒度内汇总的响应时间总和                                                                                                                            |
+| r_service       | string | 服务名称                                                                                                                                      |
+| r_service_sub   | string | <服务名称>:<部署环境>:<服务版本>                                                                                                                      |
+| r_type          | string | 服务类型，http/web/db/gateway...                                                                                                               |
+| r_version       | string | 服务版本                                                                                                                                      |
+| date            | int    | 毫秒时间戳，对应每分钟的零秒(hh:mm:00，当source="service_list_1m"时)，每小时的零分（hh:00， 当source="service_list_1h"时），每天的零点（00:00:00， 当source="service_list_1d"时） |
 
 同理，查询 `2024-03-19 15:00:00` ～ `2024-03-19 17:00:00` 两个小时的数据，可以使用 DQL：
 
@@ -257,7 +257,17 @@ TM::`*`:(){source="service_list_1d" and date >= 1710777600000 and date < 1710950
 TM::`*`:(){ (source="service_list_1h" and date >= 1710831600000 and date < 1710838800000) or (source="service_list_1m" and date >= 1710838800000 and date <= 1710840600000) }
 ```
 
-对查询结果再进行一定的计算便可以得出（avg_per_second，avg_resp_time，total_count，p50, p75, p90, p95...）等服务上的指标。
+对查询结果再进行一定的加工便可以计算出相关服务级别的指标，例如：
+```
+total_count = SUM(r_request_count)
+error_count = SUM(r_error_count)
+error_rate = SUM(r_error_count) / SUM(r_request_count)
+max_duration = MAX(r_max_duration)
+sum_resp_time = SUM(r_resp_time)
+avg_per_second = SUM(r_request_count) / <查询的时间范围>
+avg_resp_time = SUM(r_resp_time) / SUM(r_request_count)
+p50: 生成数组 [(r_resp_time1/r_request_count1)...{重复r_request_count1次}, (r_resp_time2/r_request_count2)...{重复r_request_count2次}, (r_resp_time3/r_request_count3)...{重复r_request_count3次}, ...]，数组排序后取索引 SUM(r_request_count)*0.5
+```
 
 ### namespace `TSM`
 
@@ -361,7 +371,7 @@ TSM::`*`:(){time >= 1710831600000 and time <= 1710832500000}
 | target_start          | int    | 被调服务span开始时间（服务调用产生的时间），微秒时间戳  |
 | target_duration       | int    | 每分钟粒度内被调服务span持续时间汇总，单位：微秒     |
 | count                 | int    | 每分钟粒度内调用次数                     |
-| unique_id             | string | 仅由主调服务和被调服务生成的唯一ID             |
+| unique_id             | string | 仅由主调服务名称和被调服务名称生成的唯一ID         |
 | unique_id_env_version | int    | 区分主调服务、环境、版本和被调服务、环境、版本生成的唯一ID |
 | error_count           | int    | 每分钟粒度内调用失败次数                   |
 
@@ -375,4 +385,11 @@ sum(count) as total_count,
 sum(error_count) as total_error_count,
 sum(target_duration) as total_duration
 ){} by unique_id
+```
+
+`avg_per_second`, `avg_resp_time`，`error_rate` 指标也可由此计算出：
+```
+avg_per_second = SUM(total_count) / <查询时间范围>
+avg_resp_time = SUM(total_duration) / SUM(total_count)
+error_rate = SUM(total_error_count) / SUM(total_count)
 ```
